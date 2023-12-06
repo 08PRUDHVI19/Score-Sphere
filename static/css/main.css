@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto+Mono&family=Roboto:ital,wght@0,700;1,700&display=swap');
+
+/* Styling mainn file*/
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width:100vw;
+    height: 100vh;
+    font-family: 'gilroy';
+    font-weight: 500;
+    overflow-x: hidden;
+}
+#hero{
+    margin:0 auto;
+    max-width: 1000px;
+}
+.space{
+    height: 20vh;
+}
+
+.bold{
+    display: inline-block;
+    font-size: medium;
+    font-weight: 700;
+}
+
+.table-bordered {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.student-info{
+   padding: 30px;
+   display: grid;
+   grid:auto / auto auto;
+   grid-gap: 500px/20px;
+}
+.student-info:nth-child(n){
+    padding: 20px;
+}
+p{
+  color: #183b56;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 800;
+}
+.header{
+text-align: center;
+padding: 40px;
+font-size: 45px;
+font-weight: 700;   
+font-family: 'Roboto Mono', monospace;
+color:#183b56;
+}
+
+/* Styling results file */
+h3{
+    font-weight: 700;
+}
+table th{
+    color:#577592;
+}
+/* Styling  nav  file */
+.nav-bar{
+    padding-inline:30px;
+}

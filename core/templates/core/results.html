@@ -1,0 +1,59 @@
+{% load static %}
+
+<div id="hero">
+    {% if student %}
+    <div class="student-info">
+        <div class="reg_no"><div class="bold">Reg No. : </div> {{student.reg_no}}</div>
+        <div class="name"><div class="bold">Name : </div> {{student.name}}</div>
+        <div class="dept"><div class="bold">Dept:</div> AI&DS</div>
+        <div class="sem"><div class="bold">Semester:</div> {{sem}}</div>
+        <div class="email"><div class="bold">Email:</div> {{student.email}}</div>
+        <div class="CGPA"><div class="bold">CGPA: {{ CGPA|floatformat:2}}</div> </div>
+    </div>
+    <div class="results-table">
+     {% for sem in sems %}
+        <table class="table table-bordered table-rounded table-striped  table-hover" style="margin-bottom: 30px ;" >  
+            <thead>
+                <tr >
+                    <th colspan="2" style="text-align: center;">Semester {{sem.semester}} Results</th>
+                </tr>
+                <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Grade</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for result in results %}
+                    {% if result.course.semester == sem %}
+                    <tr>
+                        <td>&nbsp;{{result.course.name}}</td>
+                        <td>&nbsp;{{result.grade}}</td>
+                    </tr>
+                    {% endif %}
+                    {% empty %}
+                        <tr colspan="2">
+                            <th>Results Does Not Exists</th>
+                        </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                {% for score in points %}
+                    {% if score.semester == sem %}
+                        <tr> 
+                            <th>SGPA</th>
+                            <th>{{score.SGPA}}</th>  
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tfoot>
+        </table> 
+    {% endfor %}
+    </div>
+    <div id="hero" style="display: flex; justify-content: center; align-items: center;">
+        <a href="{% url 'pdf_view' student.reg_no %}" class="btn btn-info">Download  Results </a>
+    </div>
+    {% endif %}
+   
+</div>
+
+

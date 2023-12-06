@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results {{student.id}}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto+Mono&family=Roboto:ital,wght@0,700;1,700&display=swap');
+        body{
+            font-family: 'poppins',sans-serif;
+            font-size:14.25px;
+        }
+        .bold{
+            color: #183b56;
+            font-weight: 700;
+        }
+       .results-table{
+            display: flex;
+            gap:20px;
+            overflow-y:hidden;
+        }
+        h3{
+            display: inline-block;
+        }
+       div{
+        display: inline;
+       }
+       table {
+        border-collapse: collapse;
+        margin:20px 0px;
+       }
+       table td{
+        padding: 2px;
+       }
+       table th{
+        color: #183b56;
+        padding:2px;
+       }
+       #hero{
+            margin-top: 100px;
+       }
+      .container{
+        font-size: 20px;
+        text-align: center;
+        background:#bedaf4 ;
+      }
+      .brand{
+        font-family: 'Roboto Mono',monospace;
+        font-size: 20px;
+        color: #183b56;
+        text-align:center;
+      }
+    </style>
+    
+</head>
+<body>
+    <div id="hero">
+        <p class="container">
+            <br> VIGNAN'S INSTITUTE OF INFORMATION TECHNOLOGY 
+            <br>VISAKHAPATNAM</p>
+        <p class="brand bold ">Score Sphere</p>
+        {% if student %}
+        <div class="student-info">
+            <p>
+                <div class="name "><div class="bold">Name : <div style="font-size: 15px;">{{student.name}}</div> </div></div><br>
+                <div class="reg_no"><div class="bold">Reg No. : </div> {{student.reg_no}}</div>
+            </p>
+            <p>
+                <div class="dept"><div class="bold">Dept:</div> AI&DS</div><br>
+                <div class="sem"><div class="bold">Year/Semester:</div>2/1</div>
+            </p>
+            <p>
+                <div class="email"><div class="bold">Email:</div> {{student.email}}</div><br>
+                <div class="CGPA"><div class="bold">CGPA: {{ CGPA|floatformat:2}}</div> </div>
+            </p>
+            
+        </div>
+        <div class="results-table">
+         {% for sem in sems %}
+            <table class=" table-hover" border="1"  >  
+                <thead>
+                    <tr >
+                        <th colspan="2" style="text-align: center; ">Semester {{sem.semester}} Results</th>
+                    </tr>
+                    <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Grade</th>
+                    </tr>
+                </thead> 
+                 <tbody >
+                    {% for result in results %}
+                        {% if result.course.semester == sem %}
+                        <tr>
+                            <td>&nbsp;{{result.course.name}}</td>
+                            <td>&nbsp;{{result.grade}}</td>
+                        </tr>
+                        {% endif %}
+                        {% empty %}
+                        <tr>
+                            <th>Results Does Not Exists</th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    {% for score in points %}
+                        {% if score.semester == sem %}
+                            <tr> 
+                                <th>SGPA</th>
+                                <th>{{score.SGPA}}</th>  
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tfoot>
+            </table>    
+        {% endfor %}
+        </div>
+        {% endif %}
+        
+    </div>
+   
+</body>
+</html>
