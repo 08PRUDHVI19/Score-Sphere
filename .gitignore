@@ -1,2 +1,5 @@
 env/
 sqlite3.exe
+__pycache__/
+results.csv
+results1.csv
